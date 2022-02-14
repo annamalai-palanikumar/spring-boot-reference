@@ -1,0 +1,7 @@
+{
+  "name": "Spring Boot Reference Application",
+  "description": "This is a small reference application for a Spring Boot application on Heroku.",
+  "repository": "https://github.com/annamalai-palanikumar/spring-boot-reference",
+  "image": "heroku/java",
+  "addons": [ ]
+}
