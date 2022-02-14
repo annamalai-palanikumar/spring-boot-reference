@@ -14,7 +14,7 @@
 	<name>spring-boot-reference</name>
 	<description>Reference project for Spring Boot</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>1.8</java.version>
 		<spring-cloud.version>2021.0.0</spring-cloud.version>
 	</properties>
 	<dependencies>
