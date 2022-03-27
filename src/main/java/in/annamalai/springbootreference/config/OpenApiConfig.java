@@ -5,11 +5,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class SpringFoxConfig {
+public class OpenApiConfig {
   @Bean
   public GroupedOpenApi api() {
     return GroupedOpenApi.builder()
-      .group("course-api").pathsToMatch("**")
+      .group("course-api").pathsToMatch("/courses/**")
       .build();
   }
 }
