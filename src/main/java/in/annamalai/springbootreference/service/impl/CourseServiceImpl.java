@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import in.annamalai.springbootreference.model.Course;
 import in.annamalai.springbootreference.repository.CourseRepository;
 import in.annamalai.springbootreference.service.CourseService;
 
+@Service
 public class CourseServiceImpl implements CourseService {
 
     @Autowired
