@@ -3,10 +3,11 @@ package in.annamalai.springbootreference.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.web.bind.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import in.annamalai.springbootreference.model.Course;
 import in.annamalai.springbootreference.repository.CourseRepository;
+import in.annamalai.springbootreference.service.CourseService;
 
 public class CourseServiceImpl implements CourseService {
 
@@ -19,13 +20,13 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<Course> getAllCourse() {
+    public List<Course> getAllCourses() {
         return new ArrayList<>(courseRepository.findAll());
     }
     
     @Override
     public Course getCourse(Long courseId) {
-        return courseRepository.findById(courseId);
+        return courseRepository.findById(courseId).orElse(null);
     }
     
     @Override
@@ -36,7 +37,7 @@ public class CourseServiceImpl implements CourseService {
     
     @Override
     public Course patchCourse(Long courseId, Course course) {
-        Course updatedCourse = courseRepository.findById(courseId);
+        Course updatedCourse = courseRepository.findById(courseId).orElse(null);
         if(course.getName() != null) {
             updatedCourse.setName(course.getName());
         }
@@ -48,7 +49,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public Course deleteCourse(Long courseId) {
-        Course deletedCourse = courseRepository.findById(courseId);
+        Course deletedCourse = courseRepository.findById(courseId).orElse(null);
         courseRepository.delete(deletedCourse);
         return deletedCourse;
     }

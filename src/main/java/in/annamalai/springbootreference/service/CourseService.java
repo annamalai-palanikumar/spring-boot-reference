@@ -7,7 +7,7 @@ import in.annamalai.springbootreference.model.Course;
 public interface CourseService {
     public Course createCourse(Course course);
 
-    public List<Course> getAllCourse();
+    public List<Course> getAllCourses();
     
     public Course getCourse(Long courseId);
 
