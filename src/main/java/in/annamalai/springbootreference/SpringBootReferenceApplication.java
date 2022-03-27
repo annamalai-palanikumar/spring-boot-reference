@@ -25,45 +25,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-public class SpringBootReferenceApplication extends WebSecurityConfigurerAdapter {
+public class SpringBootReferenceApplication {
 
-  @Autowired
-  private AuthenticationFailureHandler handler;
 
   public static void main(String[] args) {
     SpringApplication.run(SpringBootReferenceApplication.class, args);
-  }
-
-  @GetMapping("/user")
-  public Map<String, Object> user(@AuthenticationPrincipal OAuth2User principal) {
-    return Collections.singletonMap("name", principal.getAttribute("name"));
-  }
-
-  @Override
-  protected void configure(HttpSecurity http) throws Exception {
-    // @formatter:off
-    http.csrf(c -> c
-      .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
-      .authorizeRequests(a -> a
-        .antMatchers("/", "/error", "/webjars/**").permitAll()
-        .anyRequest().authenticated())
-      .logout(l -> l
-        .logoutSuccessUrl("/").permitAll())
-      .exceptionHandling(e -> e
-        .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
-      .oauth2Login(o -> o
-        .failureHandler((request, response, exception) -> {
-          request.getSession().setAttribute("error.message", exception.getMessage());
-          handler.onAuthenticationFailure(request, response, exception);
-        }));
-    // @formatter:on
-  }
-
-  @GetMapping("/error")
-  public String error(HttpServletRequest request) {
-    String message = (String) request.getSession().getAttribute("error.message");
-    request.getSession().removeAttribute("error.message");
-    return message;
   }
 
 }
